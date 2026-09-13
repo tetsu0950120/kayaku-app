@@ -7,47 +7,68 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f0f2f5; padding: 20px; color: #333; margin-top: 60px; }
+        body { font-family: -apple-system, sans-serif; background: #000000; padding: 20px; color: #f0f0f0; margin-top: 60px; }
         
         /* 常に表示されるステータスバー */
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #fff;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            z-index: 1000;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .status-item { text-align: center; font-size: 0.9em; }
-        .status-value { color: #007aff; font-size: 1.1em; display: block; }
-
-        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
-        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        #q-number { color: #666; font-size: 0.8em; }
-        
-        .copy-btn { background: #007aff; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.8em; cursor: pointer; font-weight: bold; }
-        .question { font-weight: bold; margin-bottom: 20px; font-size: 1.1em; line-height: 1.6; white-space: pre-wrap; }
-        .option { display: block; width: 100%; padding: 15px; margin-bottom: 12px; border: 2px solid #eee; border-radius: 10px; text-align: left; background: white; font-size: 1em; }
-        .option.correct-ans { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; font-weight: bold; }
-        .option.wrong-ans { background: #ffebee; border-color: #ef5350; color: #c62828; }
-        
-        #result-text { margin-top: 15px; font-weight: bold; text-align: center; font-size: 1.2em; min-height: 1.5em; }
-        .footer-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-        .next-btn { display: none; padding: 16px; background: #34c759; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; }
-        .quit-btn { display: none; padding: 16px; background: #8e8e93; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; }
-        
-        .summary { text-align: center; padding: 10px; }
-        .rate { font-size: 2.5em; color: #333; font-weight: bold; margin: 10px 0; }
-        .mode-title { color: #ff3b30; font-weight: bold; margin-bottom: 10px; }
-        .retry-btn { width: 100%; padding: 16px; background: #007aff; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; margin-bottom: 10px; }
-        .review-btn { width: 100%; padding: 16px; background: #ff9500; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; }
-    </style>
+.status-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #121212; /* 【変更】ダークグレー */
+        border-bottom: 1px solid #2c2c2e; /* 【変更】枠線も暗く */
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 1000;
+        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    .status-item { text-align: center; font-size: 0.9em; color: #a1a1a6; } /* 【変更】文字色 */
+    .status-value { color: #0a84ff; font-size: 1.1em; display: block; }    /* 【変更】明るい青 */
+.card { 
+        background: #1c1c1e; /* 【変更】白からダークグレーへ */
+        padding: 20px; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 16px rgba(0,0,0,0.9); 
+        max-width: 500px; 
+        margin: auto; 
+        border: 1px solid #2c2c2e; /* 【追加】うっすら枠線を追加 */
+    }
+    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    #q-number { color: #8e8e93; font-size: 0.8em; } /* 【変更】文字色 */
+    
+    .copy-btn { background: #0a84ff; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.8em; cursor: pointer; font-weight: bold; }
+    .question { font-weight: bold; margin-bottom: 20px; font-size: 1.1em; line-height: 1.6; white-space: pre-wrap; color: #ffffff; } /* 【変更】文字色 */        .option { display: block; width: 100%; padding: 15px; margin-bottom: 12px; border: 2px solid #eee; border-radius: 10px; text-align: left; background: white; font-size: 1em; }
+.option { 
+        display: block; 
+        width: 100%; 
+        padding: 15px; 
+        margin-bottom: 12px; 
+        border: 2px solid #2c2c2e; /* 【変更】 */
+        border-radius: 10px; 
+        text-align: left; 
+        background: #2c2c2e;       /* 【変更】暗いグレー背景 */
+        color: #ffffff;            /* 【変更】白文字 */
+        font-size: 1em; 
+        cursor: pointer;
+    }
+    /* 正解・不正解時のスタイル */
+    .option.correct-ans { background: #1b3820; border-color: #30d158; color: #30d158; font-weight: bold; } /* 【変更】暗めグリーン背景と鮮やかな緑文字 */
+    .option.wrong-ans { background: #3b1d1d; border-color: #ff453a; color: #ff453a; }                      /* 【変更】暗めレッド背景と鮮やかな赤文字 */
+    
+    #result-text { margin-top: 15px; font-weight: bold; text-align: center; font-size: 1.2em; min-height: 1.5em; }
+    .footer-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .next-btn { display: none; padding: 16px; background: #30d158; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
+    .quit-btn { display: none; padding: 16px; background: #636366; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
+    
+    /* 結果画面 */
+    .summary { text-align: center; padding: 10px; }
+    .rate { font-size: 2.5em; color: #ffffff; font-weight: bold; margin: 10px 0; } /* 【変更】白文字 */
+    .mode-title { color: #ff453a; font-weight: bold; margin-bottom: 10px; }
+    .retry-btn { width: 100%; padding: 16px; background: #0a84ff; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
+    .review-btn { width: 100%; padding: 16px; background: #ff9f0a; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
+</style>
 </head>
 <body>
 
@@ -74,12 +95,12 @@
     
     <div id="result-screen" style="display:none;">
         <div class="summary">
-            <h2 id="result-title">結果発表</h2>
+            <h2 id="result-title" style="color: #ffffff;">結果発表</h2>
             <div id="mode-notice" class="mode-title" style="display:none;">【復習モード】</div>
             <div class="rate"><span id="correct-rate">0</span>%</div>
-            <p><span id="answered-count">0</span>問中、<span id="correct-count">0</span>問正解</p>
+            <p style="color: #a1a1a6;"><span id="answered-count">0</span>問中、...</p>
             <div id="review-area" style="display:none; margin-top:20px;">
-                <p>間違えた問題が <span id="wrong-count">0</span> 問あります</p>
+                <p style="color: #a1a1a6;">間違えた問題が <span id="wrong-count">0</span> 問あります</p>
                 <button class="review-btn" onclick="startReview()">間違えた問題だけ解く</button>
             </div>
             <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
