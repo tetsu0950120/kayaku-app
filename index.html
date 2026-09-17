@@ -2,89 +2,52 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>火薬類甲種取扱保安責任者試験対策クイズ Pro+</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <style>
-        html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background: #000000;
-    overscroll-behavior: none; /* バウンド防止 */
-}
-
-body { 
-    font-family: -apple-system, sans-serif; 
-    padding: 20px; 
-    padding-top: 80px; /* ステータスバーとの重なりを調整 */
-    color: #f0f0f0; 
-    box-sizing: border-box;
-    overflow-y: auto;  /* カードの中身だけを必要に応じてスクロール */
-    -webkit-overflow-scrolling: touch;
-}
+        body { font-family: -apple-system, sans-serif; background: #000000; padding: 20px; color: #f0f0f0; margin-top: 60px; }
+        
         /* 常に表示されるステータスバー */
-.status-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: #121212; /* 【変更】ダークグレー */
-        border-bottom: 1px solid #2c2c2e; /* 【変更】枠線も暗く */
-        display: flex;
-        justify-content: space-around;
-        padding: 10px 0;
-        z-index: 1000;
-        font-weight: bold;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-    .status-item { text-align: center; font-size: 0.9em; color: #a1a1a6; } /* 【変更】文字色 */
-    .status-value { color: #0a84ff; font-size: 1.1em; display: block; }    /* 【変更】明るい青 */
-.card { 
-        background: #1c1c1e; /* 【変更】白からダークグレーへ */
-        padding: 20px; 
-        border-radius: 15px; 
-        box-shadow: 0 4px 16px rgba(0,0,0,0.9); 
-        max-width: 500px; 
-        margin: auto; 
-        border: 1px solid #2c2c2e; /* 【追加】うっすら枠線を追加 */
-    }
-    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    #q-number { color: #8e8e93; font-size: 0.8em; } /* 【変更】文字色 */
-    
-    .copy-btn { background: #0a84ff; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.8em; cursor: pointer; font-weight: bold; }
-    .question { font-weight: bold; margin-bottom: 20px; font-size: 1.1em; line-height: 1.6; white-space: pre-wrap; color: #ffffff; } /* 【変更】文字色 */        .option { display: block; width: 100%; padding: 15px; margin-bottom: 12px; border: 2px solid #eee; border-radius: 10px; text-align: left; background: white; font-size: 1em; }
-.option { 
-        display: block; 
-        width: 100%; 
-        padding: 15px; 
-        margin-bottom: 12px; 
-        border: 2px solid #2c2c2e; /* 【変更】 */
-        border-radius: 10px; 
-        text-align: left; 
-        background: #2c2c2e;       /* 【変更】暗いグレー背景 */
-        color: #ffffff;            /* 【変更】白文字 */
-        font-size: 1em; 
-        cursor: pointer;
-    }
-    /* 正解・不正解時のスタイル */
-    .option.correct-ans { background: #1b3820; border-color: #30d158; color: #30d158; font-weight: bold; } /* 【変更】暗めグリーン背景と鮮やかな緑文字 */
-    .option.wrong-ans { background: #3b1d1d; border-color: #ff453a; color: #ff453a; }                      /* 【変更】暗めレッド背景と鮮やかな赤文字 */
-    
-    #result-text { margin-top: 15px; font-weight: bold; text-align: center; font-size: 1.2em; min-height: 1.5em; }
-    .footer-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-    .next-btn { display: none; padding: 16px; background: #30d158; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
-    .quit-btn { display: none; padding: 16px; background: #636366; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
-    
-    /* 結果画面 */
-    .summary { text-align: center; padding: 10px; }
-    .rate { font-size: 2.5em; color: #ffffff; font-weight: bold; margin: 10px 0; } /* 【変更】白文字 */
-    .mode-title { color: #ff453a; font-weight: bold; margin-bottom: 10px; }
-    .retry-btn { width: 100%; padding: 16px; background: #0a84ff; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
-    .review-btn { width: 100%; padding: 16px; background: #ff9f0a; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
-</style>
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #121212;
+            border-bottom: 1px solid #2c2c2e;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+        .status-item { text-align: center; font-size: 0.9em; color: #a1a1a6; }
+        .status-value { color: #0a84ff; font-size: 1.1em; display: block; }
+
+        .card { background: #1c1c1e; padding: 20px; border-radius: 15px; box-shadow: 0 4px 16px rgba(0,0,0,0.9); max-width: 500px; margin: auto; border: 1px solid #2c2c2e; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        #q-number { color: #8e8e93; font-size: 0.8em; }
+        
+        .copy-btn { background: #0a84ff; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.8em; cursor: pointer; font-weight: bold; }
+        .question { font-weight: bold; margin-bottom: 20px; font-size: 1.1em; line-height: 1.6; white-space: pre-wrap; color: #ffffff; }
+        .option { display: block; width: 100%; padding: 15px; margin-bottom: 12px; border: 2px solid #2c2c2e; border-radius: 10px; text-align: left; background: #2c2c2e; color: #ffffff; font-size: 1em; cursor: pointer; }
+        .option.correct-ans { background: #1b3820; border-color: #30d158; color: #30d158; font-weight: bold; }
+        .option.wrong-ans { background: #3b1d1d; border-color: #ff453a; color: #ff453a; }
+        
+        #result-text { margin-top: 15px; font-weight: bold; text-align: center; font-size: 1.2em; min-height: 1.5em; }
+        .footer-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .next-btn { display: none; padding: 16px; background: #30d158; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
+        .quit-btn { display: none; padding: 16px; background: #636366; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
+        
+        .summary { text-align: center; padding: 10px; }
+        .rate { font-size: 2.5em; color: #ffffff; font-weight: bold; margin: 10px 0; }
+        .mode-title { color: #ff453a; font-weight: bold; margin-bottom: 10px; }
+        .retry-btn { width: 100%; padding: 16px; background: #0a84ff; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
+        .review-btn { width: 100%; padding: 16px; background: #ff9f0a; color: white; border: none; border-radius: 10px; font-size: 1em; font-weight: bold; cursor: pointer; }
+    </style>
 </head>
 <body>
 
@@ -114,12 +77,12 @@ body {
             <h2 id="result-title" style="color: #ffffff;">結果発表</h2>
             <div id="mode-notice" class="mode-title" style="display:none;">【復習モード】</div>
             <div class="rate"><span id="correct-rate">0</span>%</div>
-            <p style="color: #a1a1a6;"><span id="answered-count">0</span>問中、...</p>
+            <p style="color: #a1a1a6;"><span id="answered-count">0</span>問中、<span id="correct-count">0</span>問正解</p>
             <div id="review-area" style="display:none; margin-top:20px;">
                 <p style="color: #a1a1a6;">間違えた問題が <span id="wrong-count">0</span> 問あります</p>
                 <button class="review-btn" onclick="startReview()">間違えた問題だけ解く</button>
             </div>
-            <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
+            <hr style="margin:20px 0; border:0; border-top:1px solid #2c2c2e;">
             <button class="retry-btn" onclick="initQuiz()">最初から解き直す</button>
         </div>
     </div>
@@ -1399,14 +1362,14 @@ body {
             q: "H30-2-20  構造物を解体する発破で、下図のとおり電気雷管30個を直列結線したものを15組並列結線した直並列回路に、発破母線150m(総延長300m)を結線して電気発破を行う場合、各雷管に直流2.0A(アンペア)の電流を流すには、何V(ボルト)の電圧が必要か。(1)～(4)の中から選べ。ただし、電気雷管1個の抵抗は1.0Ω(オーム)、発破母線1m(総延長2m)当たりの抵抗は0.040Ω、発破器の内部抵抗は0.0Ωとする。",
             a: ["240 V", "195 V", "60 V", "900 V"],
          },
-    ];
+];
 
     let quizSet = [];
     let wrongQuestions = [];
     let currentIdx = 0;
     let isAnswered = false;
     let correctCount = 0;
-    let answeredCount = 0; // 解答済みの数（リアルタイム計算用）
+    let answeredCount = 0;
     let isReviewMode = false;
 
     const shuffle = (array) => {
@@ -1484,15 +1447,15 @@ body {
         if (selectedText === correctText) {
             correctCount++;
             document.getElementById('result-text').innerText = "⭕ 正解！";
-            document.getElementById('result-text').style.color = "#2e7d32";
+            document.getElementById('result-text').style.color = "#30d158";
         } else {
             selectedBtn.classList.add('wrong-ans');
             document.getElementById('result-text').innerText = "❌ 不正解";
-            document.getElementById('result-text').style.color = "#c62828";
+            document.getElementById('result-text').style.color = "#ff453a";
             wrongQuestions.push(quizSet[currentIdx]);
         }
         
-        updateLiveStatus(); // 解答直後に数値を更新
+        updateLiveStatus();
         document.getElementById('next-btn').style.display = 'block';
         document.getElementById('quit-btn').style.display = 'block';
     }
@@ -1505,7 +1468,7 @@ body {
 
     function showResult(isInterrupted) {
         document.getElementById('quiz-screen').style.display = 'none';
-        document.getElementById('live-status-bar').style.display = 'none'; // 結果画面ではバーを隠す
+        document.getElementById('live-status-bar').style.display = 'none';
         document.getElementById('result-screen').style.display = 'block';
         
         document.getElementById('result-title').innerText = isInterrupted ? "中断スコア" : "結果発表";
@@ -1525,9 +1488,9 @@ body {
         }
     }
 
-function copyEverything() {
+    function copyEverything() {
         const btn = document.querySelector('.copy-btn');
-        const originalText = btn.innerText; // ここで現在のテキスト（AI質問用にコピー）を保存
+        const originalText = btn.innerText;
         
         const qText = document.getElementById('question-text').innerText;
         const options = Array.from(document.querySelectorAll('.option')).map((btn, i) => `${i + 1}. ${btn.innerText}`).join('\n');
@@ -1535,7 +1498,6 @@ function copyEverything() {
         
         navigator.clipboard.writeText(fullPrompt).then(() => {
             btn.innerText = '完了！';
-            // 2秒後に元のテキストに戻す
             setTimeout(() => { 
                 btn.innerText = originalText; 
             }, 2000);
@@ -1543,16 +1505,7 @@ function copyEverything() {
             console.error('コピーに失敗しました', err);
         });
     }
-// 端までスクロールした時だけバウンド引っ張りをブロックする
-    document.addEventListener('touchmove', function(e) {
-        const isAtTop = window.scrollY === 0;
-        const isAtBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight;
-        
-        // 端に達している状態でさらに引っぱった時だけキャンセル
-        if ((isAtTop && e.touches[0].clientY > 0) || (isAtBottom && e.touches[0].clientY < 0)) {
-            if (e.cancelable) e.preventDefault();
-        }
-    }, { passive: false });
+
     initQuiz();
 </script>
 </body>
