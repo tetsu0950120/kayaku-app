@@ -10,16 +10,14 @@
         html, body {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* 全体のバウンドスクロールを停止 */
-    position: fixed;  /* 画面枠を画面に固定 */
-    top: 0;
-    left: 0;
-    overscroll-behavior: none;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    overscroll-behavior: none; /* バウンド防止 */
 }
 
 body { 
     font-family: -apple-system, sans-serif; 
-    background: #000000; 
     padding: 20px; 
     padding-top: 80px; /* ステータスバーとの重なりを調整 */
     color: #f0f0f0; 
@@ -1545,11 +1543,16 @@ function copyEverything() {
             console.error('コピーに失敗しました', err);
         });
     }
-// iOS Webアプリのバウンド引っ張り動作を強制停止
+// 端までスクロールした時だけバウンド引っ張りをブロックする
     document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
+        const isAtTop = window.scrollY === 0;
+        const isAtBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight;
+        
+        // 端に達している状態でさらに引っぱった時だけキャンセル
+        if ((isAtTop && e.touches[0].clientY > 0) || (isAtBottom && e.touches[0].clientY < 0)) {
+            if (e.cancelable) e.preventDefault();
+        }
     }, { passive: false });
-
     initQuiz();
 </script>
 </body>
